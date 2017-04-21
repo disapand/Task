@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Task;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +18,10 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return view('tasks.index');
+        $title = '任务清单';
+        return view('tasks.index', [
+            'title' => $title,
+        ]);
     }
 
     /**
@@ -37,7 +42,10 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this -> validate($request, [
+            'name' => 'required|max:255'
+        ]);
+        dd($request -> user());
     }
 
     /**
