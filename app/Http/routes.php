@@ -28,6 +28,8 @@ Route::get('logout', 'Auth\AuthController@getLogout');
 Route::get('register', 'Auth\AuthController@getRegister');
 Route::post('register', 'Auth\AuthController@postRegister');
 
-Route::get('tasks', 'TaskController@index');
-Route::post('task', 'TaskController@store');
-Route::get('task/{task}', 'TaskController@destroy');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('tasks', 'TaskController@index');
+    Route::get('task/{task}', 'TaskController@destroy');
+    Route::post('task', 'TaskController@store');
+});

@@ -19,8 +19,10 @@ class TaskController extends Controller
     public function index()
     {
         $title = '任务清单';
+        $tasks = Task::all();
         return view('tasks.index', [
             'title' => $title,
+            'tasks' => $tasks,
         ]);
     }
 
@@ -45,7 +47,13 @@ class TaskController extends Controller
         $this -> validate($request, [
             'name' => 'required|max:255'
         ]);
-        dd($request -> user());
+
+        Task::create([
+            'name' => $request -> name,
+            'user_id' => $request -> user() -> id,
+                     ]);
+
+        return redirect('/tasks');
     }
 
     /**
@@ -88,8 +96,15 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $user_id = $request -> user() -> id;
+        if (Task::where('id', $id) -> where('user_id', $user_id) -> exists()){
+            Task::where('id', $id)->delete();
+            return redirect('/tasks');
+        } else {
+            return '不是自己的';
+        }
+
     }
 }

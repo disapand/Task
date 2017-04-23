@@ -44,28 +44,26 @@
                     </div>
 
                     <div class="panel-body">
-                        {{--@foreach($tasks as $task)--}}
+                        @foreach($tasks as $task)
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-8 col-md-offset-2">
-                                            {{--<h2>{{ $task -> name }}</h2>--}}
-                                            <h2>第一个任务</h2>
+                                            <h2>{{ $task -> name }}</h2>
                                             <hr>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-3 col-md-offset-2">
-                                            {{--<small>{{ $task -> update_at }}</small>--}}
-                                            <small>2017年4月21日</small>
+                                            <small>{{ $task -> updated_at }}</small>
                                         </div>
                                         <div class="col-md-3 col-md-offset-2">
-                                            <a class="btn btn-danger" href="{{ url('task/') }}"><span class="glyphicon glyphicon-trash"></span>删除任务</a>
+                                            <a class="btn btn-danger" href="{{ url('task/'. $task -> id) }}"><span class="glyphicon glyphicon-trash"></span>删除任务</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        {{--@endforeach--}}
+                        @endforeach
                     </div>
                 </div>
             </div>

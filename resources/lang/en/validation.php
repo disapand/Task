@@ -89,8 +89,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'name' => [
+            'required' => ':attribute是必填的',
         ],
     ],
 
@@ -105,6 +105,8 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name' => '姓名'
+    ],
 
 ];
